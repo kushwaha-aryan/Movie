@@ -1,0 +1,79 @@
+body{
+    background-color: black;
+}
+
+.topNav{
+    align-items:center;
+    overflow: hidden;
+    background: hotpink;
+    padding: 10px;
+
+}
+
+.topNav a{
+    font-style: italic;
+    text-decoration: none;
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+.topNav .searchBar{
+    float: right;
+}
+
+form{
+    background-color:lightcyan;
+    width: 300px;
+    height: 43px;
+    border-radius:11px;
+    display: flex;
+    text-align: center;
+}
+
+input:hover {
+    background-color: cyan;
+}
+
+input{
+    all: unset;
+    color: deepskyblue;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    font: 15px system-ui;
+    border-radius: 11px;
+}
+
+.card{
+    height: 400px;
+    width: 300px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    background-color: #151f30;
+    color: white;
+}
+
+.card:hover{
+    background-color: lightpink;
+}
+
+
+.thumbnail{
+    border: 3px solid black;
+    border-radius: 10px;
+    box-shadow: hotpink 2px 4px 4px;
+    padding: 10px;
+    height:300px;
+    width:245px;
+}
+
+.column{
+    float: left;
+    width: 19%;
+    padding: 7px;
+}
