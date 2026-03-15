@@ -88,8 +88,9 @@ input{
 }
 
 .thumbnail:hover{
-    height:330px;
-    width:275px;
+    transform:scale(1.1);
+    border:none;
+    transition:0.5s;
 }
 
 .column{
