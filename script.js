@@ -6,8 +6,12 @@ const SEARCHAPI='https://api.themoviedb.org/3/search/movie?&api_key=c8c519bd0d0b
 const main = document.getElementById('section');
 const form = document.getElementById('form');
 const search = document.getElementById('query');
+const loadMoreBtn = document.getElementById('loadMore');
 
-returnMovies(APILINK)
+let currentPage = 1;       
+let currentURL = APILINK;   
+
+returnMovies(APILINK);
 
 function returnMovies(url){
     fetch(url)
@@ -17,12 +21,6 @@ function returnMovies(url){
         data.results.forEach(elements => {
             const div_card = document.createElement('div');
             div_card.setAttribute('class', 'card');
-            
-            const div_row = document.createElement('div');
-            div_row.setAttribute('class', 'row');
-            
-            const div_col = document.createElement('div');
-            div_col.setAttribute('class', 'column');
             
             const image = document.createElement('img');
             image.setAttribute('class', 'thumbnail');
@@ -35,27 +33,33 @@ function returnMovies(url){
 
             title.innerHTML=`${elements.title}`;
             image.src=IMG_PATH+elements.poster_path;
+            image.onerror = () => image.src = 'https://raw.githubusercontent.com/kushwaha-aryan/storage/refs/heads/main/mohamed_hassan-cinema-4153289_1920.jpg';
 
             center.appendChild(image);
             div_card.appendChild(center);
             div_card.appendChild(title);
-            div_col.appendChild(div_card);
-            div_row.appendChild(div_col);
 
-            main.appendChild(div_row);
+            main.appendChild(div_card);
         });
     });
 }
 
+loadMoreBtn.addEventListener('click', () => {
+    currentPage++;
+    const nextURL = currentURL.replace(/&page=\d+/, `&page=${currentPage}`);
+    currentURL = nextURL;
+    returnMovies(nextURL);
+});
+
 form.addEventListener('submit', (e)=>{
     e.preventDefault();
     main.innerHTML = '';
+    currentPage = 1;
     const searchItem=search.value;
     
     if(searchItem){
-        returnMovies(SEARCHAPI+searchItem);
+        currentURL = SEARCHAPI + searchItem + `&page=1`;
+        returnMovies(currentURL);
         search.value="";
     }
 })
-
-
