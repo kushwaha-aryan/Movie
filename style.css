@@ -63,7 +63,7 @@ input{
 
 .card{
     height: 400px;
-    width: 300px;
+    width: 100%;
     border-radius: 10px;
     padding: 10px;
     text-align: center;
@@ -88,13 +88,30 @@ input{
 }
 
 .thumbnail:hover{
-    transform:scale(1.1);
-    border:none;
-    transition:0.5s;
+    transform: scale(1.1);
+    border: none;
+    transition: 0.5s;
 }
 
-.column{
-    float: left;
-    width: 19%;
-    padding: 7px;
+#loadMore {
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+#loadMore:hover {
+    background-color: mediumpurple;
+    box-shadow: 0 0 15px greenyellow;
+}
+
+#section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+    padding: 20px;
 }
