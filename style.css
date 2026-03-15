@@ -5,9 +5,13 @@ body{
 .topNav{
     align-items:center;
     overflow: hidden;
-    background: hotpink;
+    background: cornflowerblue;
     padding: 10px;
 
+}
+
+.topNav:hover{
+    background-color: black;
 }
 
 .topNav a{
@@ -19,6 +23,15 @@ body{
     padding: 14px 16px;
     font-size: 1.4rem;
     text-transform: uppercase;
+}
+
+.topNav a:hover{
+    border: 3px solid white;
+    border-radius: 15px;
+    color: mediumpurple;
+    box-shadow: 0 0 100px greenyellow;
+    font-size: 32px;
+    background-color: lightpink;
 }
 
 .topNav .searchBar{
@@ -59,7 +72,9 @@ input{
 }
 
 .card:hover{
-    background-color: lightpink;
+    background-color: lightskyblue;
+    border-radius: 22px;
+    box-shadow: 0 0 30px greenyellow;
 }
 
 
@@ -69,7 +84,12 @@ input{
     box-shadow: hotpink 2px 4px 4px;
     padding: 10px;
     height:300px;
-    width:245px;
+    width:250px;
+}
+
+.thumbnail:hover{
+    height:330px;
+    width:275px;
 }
 
 .column{
