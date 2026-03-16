@@ -1,12 +1,33 @@
-const APILINK = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=c8c519bd0d0baf45eb026e4be9d0599c&page=1';
+const APILINK = 'https://api.themoviedb.org/3/discover/movie?sort_by=revenue.desc&api_key=c8c519bd0d0baf45eb026e4be9d0599c&page=1';
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
 const SEARCHAPI='https://api.themoviedb.org/3/search/movie?&api_key=c8c519bd0d0baf45eb026e4be9d0599c&query=';
-
+const genres = [
+    { id: 28, name: "Action" },
+    { id: 12, name: "Adventure" },
+    { id: 16, name: "Animation" },
+    { id: 35, name: "Comedy" },
+    { id: 80, name: "Crime" },
+    { id: 99, name: "Documentary" },
+    { id: 18, name: "Drama" },
+    { id: 10751, name: "Family" },
+    { id: 14, name: "Fantasy" },
+    { id: 36, name: "History" },
+    { id: 27, name: "Horror" },
+    { id: 10402, name: "Music" },
+    { id: 9648, name: "Mystery" },
+    { id: 10749, name: "Romance" },
+    { id: 878, name: "Sci-Fi" },
+    { id: 10770, name: "TV Movie" },
+    { id: 53, name: "Thriller" },
+    { id: 10752, name: "War" },
+    { id: 37, name: "Western" }
+];
 
 const main = document.getElementById('section');
 const form = document.getElementById('form');
 const search = document.getElementById('query');
 const loadMoreBtn = document.getElementById('loadMore');
+const genreContainer = document.querySelector('.genre');
 
 let currentPage = 1;       
 let currentURL = APILINK;   
@@ -44,6 +65,26 @@ function returnMovies(url){
     });
 }
 
+genres.forEach(g => {
+    const label = document.createElement('label');
+    label.innerHTML = `<input type="radio" name="genre" value="${g.id}"> ${g.name}`;
+    genreContainer.appendChild(label);
+});
+
+genreContainer.addEventListener('change', () => {
+    const selected = document.querySelector('input[name="genre"]:checked').value;
+
+    if (currentURL.includes('&with_genres=')) {
+        currentURL = currentURL.replace(/&with_genres=\d+/, `&with_genres=${selected}`);
+    } else {
+        currentURL += `&with_genres=${selected}`;
+    }
+
+    main.innerHTML = ''; // clear old movies
+    currentPage = 1; // reset page
+    returnMovies(currentURL); // fetch new movies
+});
+
 loadMoreBtn.addEventListener('click', () => {
     currentPage++;
     const nextURL = currentURL.replace(/&page=\d+/, `&page=${currentPage}`);
@@ -56,10 +97,14 @@ form.addEventListener('submit', (e)=>{
     main.innerHTML = '';
     currentPage = 1;
     const searchItem=search.value;
-    
+
     if(searchItem){
         currentURL = SEARCHAPI + searchItem + `&page=1`;
+        main.innerHTML = '';
+        currentPage = 1;
         returnMovies(currentURL);
         search.value="";
+        // optional: deselect genre radios
+        document.querySelectorAll('input[name="genre"]').forEach(r => r.checked = false);
     }
 })
