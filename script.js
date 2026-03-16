@@ -74,11 +74,7 @@ genres.forEach(g => {
 genreContainer.addEventListener('change', () => {
     const selected = document.querySelector('input[name="genre"]:checked').value;
 
-    if (currentURL.includes('&with_genres=')) {
-        currentURL = currentURL.replace(/&with_genres=\d+/, `&with_genres=${selected}`);
-    } else {
-        currentURL += `&with_genres=${selected}`;
-    }
+    currentURL = APILINK + `&with_genres=${selected}`;
 
     main.innerHTML = ''; // clear old movies
     currentPage = 1; // reset page
