@@ -3,7 +3,6 @@ body{
 }
 
 .topNav{
-    align-items:center;
     overflow: hidden;
     background: cornflowerblue;
     border-radius: 15px;
@@ -96,11 +95,6 @@ input{
     display: none; /* hidden until hover */
 }
 
-.genre-wrapper:hover .genre {
-    display: grid; /* show on hover */
-    opacity: 1;
-}
-
 .genre label {
     border: 2px solid deepskyblue;
     display: block;
@@ -124,16 +118,15 @@ input{
     opacity: 1;
     transition: 0.3s;
 }
+
 .card{
-    height: 400px;
     width: 100%;
     border-radius: 10px;
     padding: 10px;
     text-align: center;
     background-color: #151f30;
     color: white;
-}
-
+}   
 .card:hover{
     background-color: lightskyblue;
     border-radius: 22px;
@@ -153,6 +146,8 @@ input{
     padding: 10px;
     height:300px;
     width:250px;
+    display: block;
+    margin:auto;
 }
 
 .thumbnail:hover{
@@ -182,4 +177,37 @@ input{
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 40px;
     padding: 20px;
+}
+
+.overview{
+    border: 3px solid lavenderblush;
+    border-radius: 10px;
+    padding: 10px;
+    font-style: italic;
+    color: darkorchid;
+
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(10px);
+    transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover .overview{
+    max-height:200px; /* enough for text */
+    opacity:1;
+    transform:translateY(0);
+}
+
+.movie-info{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.rating-year{
+    display:flex;
+    justify-content:space-between;
+    width:100%;
+    margin-top:5px;
 }
