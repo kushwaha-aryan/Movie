@@ -77,7 +77,7 @@ function returnMovies(url){
                 : 'https://raw.githubusercontent.com/kushwaha-aryan/storage/refs/heads/main/mohamed_hassan-cinema-4153289_1920.jpg';
             image.onerror = () => image.src = 'https://raw.githubusercontent.com/kushwaha-aryan/storage/refs/heads/main/mohamed_hassan-cinema-4153289_1920.jpg';
 
-            rating.innerHTML = `⭐ ${elements.vote_average}`;
+            rating.innerHTML = `⭐ ${elements.vote_average.toFixed(2)}`;
 
             year.innerHTML = elements.release_date?.split("-")[0];
 
