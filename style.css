@@ -6,8 +6,8 @@ body{
     align-items:center;
     overflow: hidden;
     background: cornflowerblue;
+    border-radius: 15px;
     padding: 10px;
-
 }
 
 .topNav:hover{
@@ -61,6 +61,69 @@ input{
     border-radius: 11px;
 }
 
+.genre-wrapper {
+    position: relative;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.genre-btn{
+    border: 3px solid lightskyblue;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: lightpink;
+}
+
+.genre-btn:hover{
+    font-size: 22px;
+    box-shadow: 0 0 100px greenyellow;
+}
+
+.genre {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns exactly */
+    gap: 10px; /* spacing between labels */
+    min-width: 300px; /* adjust so 3 fit nicely */
+    padding: 10px;
+    background-color: #222;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #000;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    display: none; /* hidden until hover */
+}
+
+.genre-wrapper:hover .genre {
+    display: grid; /* show on hover */
+    opacity: 1;
+}
+
+.genre label {
+    border: 2px solid deepskyblue;
+    display: block;
+    color: white;
+    margin: 5px 0;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.genre label:hover {
+    background-color: aqua;
+    color: black;
+    font-size: 20px;
+    box-shadow: 0 0 10px aquamarine;
+}
+
+.genre-wrapper:hover .genre {
+    display: grid;
+    opacity: 1;
+    transition: 0.3s;
+}
 .card{
     height: 400px;
     width: 100%;
@@ -77,6 +140,11 @@ input{
     box-shadow: 0 0 30px greenyellow;
 }
 
+.card:hover .thumbnail{
+    box-shadow: none;
+    border-radius: 22px;
+    margin-top: 10px;
+}
 
 .thumbnail{
     border: 3px solid black;
