@@ -4,9 +4,14 @@ body{
 
 .topNav{
     overflow: hidden;
+    background: cornflowerblue;
     background: black;
     border-radius: 15px;
     padding: 10px;
+}
+
+.topNav:hover{
+    background-color: black;
 }
 
 .topNav a{
