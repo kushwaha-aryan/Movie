@@ -30,7 +30,7 @@ const loadMoreBtn = document.getElementById('loadMore');
 const genreContainer = document.querySelector('.genre');
 
 let currentPage = 1;       
-let currentURL = APILINK;   
+let currentURL = APILINK;
 
 returnMovies(APILINK);
 
@@ -49,16 +49,43 @@ function returnMovies(url){
             
             const title = document.createElement('h3');
             title.setAttribute('id', 'title');
-            
-            const center=document.createElement('center');
 
-            title.innerHTML=`${elements.title}`;
-            image.src=IMG_PATH+elements.poster_path;
+            const rating = document.createElement('div');
+            rating.classList.add('rating');
+
+            const year = document.createElement('div');
+            year.classList.add('year');
+
+            const overview = document.createElement('div');
+            overview.classList.add('overview');
+
+            const movieInfo = document.createElement('div');
+            movieInfo.classList.add('movie-info');
+
+            const ratingYear = document.createElement('div');
+            ratingYear.classList.add('rating-year');
+
+            ratingYear.appendChild(rating);
+            ratingYear.appendChild(year);
+
+            movieInfo.appendChild(ratingYear);
+            movieInfo.appendChild(overview);
+
+            title.textContent = elements.title;
+            image.src = elements.poster_path
+                ? IMG_PATH + elements.poster_path
+                : 'https://raw.githubusercontent.com/kushwaha-aryan/storage/refs/heads/main/mohamed_hassan-cinema-4153289_1920.jpg';
             image.onerror = () => image.src = 'https://raw.githubusercontent.com/kushwaha-aryan/storage/refs/heads/main/mohamed_hassan-cinema-4153289_1920.jpg';
 
-            center.appendChild(image);
-            div_card.appendChild(center);
+            rating.innerHTML = `⭐ ${elements.vote_average}`;
+
+            year.innerHTML = elements.release_date?.split("-")[0];
+
+            overview.innerHTML = elements.overview;
+            
+            div_card.appendChild(image);
             div_card.appendChild(title);
+            div_card.appendChild(movieInfo);
 
             main.appendChild(div_card);
         });
@@ -76,9 +103,10 @@ genreContainer.addEventListener('change', () => {
 
     currentURL = APILINK + `&with_genres=${selected}`;
 
-    main.innerHTML = ''; // clear old movies
-    currentPage = 1; // reset page
-    returnMovies(currentURL); // fetch new movies
+    main.innerHTML = '';
+    currentPage = 1;
+
+    returnMovies(currentURL);
 });
 
 loadMoreBtn.addEventListener('click', () => {
