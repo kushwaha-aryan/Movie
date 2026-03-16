@@ -29,7 +29,7 @@ const search = document.getElementById('query');
 const loadMoreBtn = document.getElementById('loadMore');
 const genreContainer = document.querySelector('.genre');
 
-let currentPage = 1;       
+let currentPage = 1;
 let currentURL = APILINK;
 
 returnMovies(APILINK);
@@ -38,58 +38,58 @@ function returnMovies(url){
     fetch(url)
         .then(res => res.json())
         .then(function(data){
-        console.log(data.results);
-        data.results.forEach(elements => {
-            const div_card = document.createElement('div');
-            div_card.setAttribute('class', 'card');
-            
-            const image = document.createElement('img');
-            image.setAttribute('class', 'thumbnail');
-            image.setAttribute('id', 'image');
-            
-            const title = document.createElement('h3');
-            title.setAttribute('id', 'title');
+            console.log(data.results);
+            data.results.forEach(elements => {
+                const div_card = document.createElement('div');
+                div_card.setAttribute('class', 'card');
 
-            const rating = document.createElement('div');
-            rating.classList.add('rating');
+                const image = document.createElement('img');
+                image.setAttribute('class', 'thumbnail');
+                image.setAttribute('id', 'image');
 
-            const year = document.createElement('div');
-            year.classList.add('year');
+                const title = document.createElement('h3');
+                title.setAttribute('id', 'title');
 
-            const overview = document.createElement('div');
-            overview.classList.add('overview');
+                const rating = document.createElement('div');
+                rating.classList.add('rating');
 
-            const movieInfo = document.createElement('div');
-            movieInfo.classList.add('movie-info');
+                const year = document.createElement('div');
+                year.classList.add('year');
 
-            const ratingYear = document.createElement('div');
-            ratingYear.classList.add('rating-year');
+                const overview = document.createElement('div');
+                overview.classList.add('overview');
 
-            ratingYear.appendChild(rating);
-            ratingYear.appendChild(year);
+                const movieInfo = document.createElement('div');
+                movieInfo.classList.add('movie-info');
 
-            movieInfo.appendChild(ratingYear);
-            movieInfo.appendChild(overview);
+                const ratingYear = document.createElement('div');
+                ratingYear.classList.add('rating-year');
 
-            title.textContent = elements.title;
-            image.src = elements.poster_path
-                ? IMG_PATH + elements.poster_path
-                : 'https://raw.githubusercontent.com/kushwaha-aryan/storage/refs/heads/main/mohamed_hassan-cinema-4153289_1920.jpg';
-            image.onerror = () => image.src = 'https://raw.githubusercontent.com/kushwaha-aryan/storage/refs/heads/main/mohamed_hassan-cinema-4153289_1920.jpg';
+                ratingYear.appendChild(rating);
+                ratingYear.appendChild(year);
 
-            rating.innerHTML = `⭐ ${elements.vote_average.toFixed(2)}`;
+                movieInfo.appendChild(ratingYear);
+                movieInfo.appendChild(overview);
 
-            year.innerHTML = elements.release_date?.split("-")[0];
+                title.textContent = elements.title;
+                image.src = elements.poster_path
+                    ? IMG_PATH + elements.poster_path
+                    : 'https://raw.githubusercontent.com/kushwaha-aryan/storage/refs/heads/main/mohamed_hassan-cinema-4153289_1920.jpg';
+                image.onerror = () => image.src = 'https://raw.githubusercontent.com/kushwaha-aryan/storage/refs/heads/main/mohamed_hassan-cinema-4153289_1920.jpg';
 
-            overview.innerHTML = elements.overview;
-            
-            div_card.appendChild(image);
-            div_card.appendChild(title);
-            div_card.appendChild(movieInfo);
+                rating.innerHTML = `⭐ ${elements.vote_average.toFixed(2)}`;
 
-            main.appendChild(div_card);
+                year.innerHTML = elements.release_date?.split("-")[0];
+
+                overview.innerHTML = elements.overview;
+
+                div_card.appendChild(image);
+                div_card.appendChild(title);
+                div_card.appendChild(movieInfo);
+
+                main.appendChild(div_card);
+            });
         });
-    });
 }
 
 genres.forEach(g => {
@@ -132,3 +132,13 @@ form.addEventListener('submit', (e)=>{
         document.querySelectorAll('input[name="genre"]').forEach(r => r.checked = false);
     }
 })
+
+
+
+// Theme Toggle Script
+const themeToggle = document.getElementById('theme-toggle');
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    themeToggle.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+});
