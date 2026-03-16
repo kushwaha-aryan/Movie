@@ -4,8 +4,7 @@ body{
 
 .topNav{
     overflow: hidden;
-    background: cornflowerblue;
-    background: black;
+    background-color: cornflowerblue;
     border-radius: 15px;
     padding: 10px;
 }
